@@ -1,42 +1,24 @@
-// import './App.css';
-// import React, { useState } from 'react';
-// import { ReactDOM } from 'react';
-// import Counter from './raphealsFiles/components/counter';
-// import Square from './raphealsFiles/components/square';
-// import Grid from './raphealsFiles/components/grid';
-// function RalphPage() {
-//   return (
-//     <Grid valueArray={[1,2,3,4,5]}/>
-//   );
-// }
+import React from 'react';
+import LoginForm from './raphealsFiles/login/Main';
+import "./raphealsFiles/login/Login.css";
+import { useState } from 'react';
 
-// export default RalphPage;
-import './App.css';
-import React, { useState } from 'react';
-import { ReactDOM } from 'react';
-import Counter from './raphealsFiles/components/counter';
-import Square from './raphealsFiles/components/square';
-import Grid from './raphealsFiles/components/grid';
-
-let turns = 0;
-
-function incrementTurns() {
-  turns++;
-}
-
-function nextValue() {
-  if(turns % 2 === 0) {
-    return "X"
+function Website() {
+  const [nightMode, setNightMode] = useState(false);
+  
+  const changeNightMode = (e) => {
+    setNightMode(!nightMode);
   }
-  return "O"
-}
 
-function gameOne() {
+  let nightTheme = nightMode ? "dark-mode" : "light-mode"
+  let themeButton = nightMode ? "Too Dark?" : "Too Bright?" 
 
   return (
-    //9 Squares
-    <Grid valueArray={[nextValue(), nextValue(), nextValue(), nextValue(), nextValue(), nextValue(), nextValue(), nextValue(), nextValue()]}/>
+      <div className={`body body__background--${nightTheme} ${nightTheme}`}>
+        <button className={`panel__button mode--button ${nightTheme}`} onClick={changeNightMode}>{themeButton}</button>
+        <LoginForm themes={nightTheme}/>
+      </div>
   );
 }
 
-export default gameOne;
+export default Website;
